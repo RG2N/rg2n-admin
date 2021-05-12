@@ -29,6 +29,9 @@ Game.on("playerJoin", player => {
     if (checkRestricted(player) == true) {
         player.kick("You are restricted from joining this game!")
     }
+     if (checkRestrictedIp(player) == true) {
+        player.kick("You are restricted from joining this game!")
+    }
     if (checkStaff(player) == true) {
         player.centerPrint(prefix + "You are staff!", 10)
     }
@@ -63,6 +66,19 @@ Game.command("ban", (caller, args) => {
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
             restricted.push(player.userId)
+            player.message(prefix + "They have been banned!")
+            return player.kick("You have been banned from the server.")
+        } else {
+            player.message(prefix + "User or value not found.")
+        }
+    }
+})
+
+Game.command("ipban", (caller, args) => {
+    if (checkStaff(caller) !== true) return
+    for (let player of Game.players) {
+        if (player.username.startsWith(args)) {
+            restrictedips.push(player.socket.IPv4)
             player.message(prefix + "They have been banned!")
             return player.kick("You have been banned from the server.")
         } else {

@@ -92,7 +92,7 @@ Game.command("getip", (caller, args) => {
     if (checkStaff(caller) !== true) return
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
-            return caller.message(prefix + "The player's IP is " + caller.socket.IPV4)
+            return caller.message(prefix + "The player's IP is " + player.socket.IPV4)
         } else {
             caller.message(prefix + "User or value not found.")
         }

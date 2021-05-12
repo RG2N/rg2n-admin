@@ -5,10 +5,11 @@ RG2NAdmin is a small and powerful admin to get you started with brick hill.
 
 1. Place the rg2nadmin.js file into your server's user_scripts folder.
 2. Open your start.js and paste in the following code: 
-```
+```javascript
 rg2nAdmin: {
         staff: [417215, 323659, 179802],
         restricted: []
+        restrictedips: []
 }
 ```
 3. Your start.js should look like this now.

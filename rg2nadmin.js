@@ -19,6 +19,9 @@ function checkStaff(player) {
 function checkRestricted(player) {
     if (restricted.includes(player.userId)) return true
 }
+function checkRestrictedIp(player) {
+    if (restrictedips.includes(player.socket.IPv4)) return true
+}
 
 // Code
 Game.on("playerJoin", player => {

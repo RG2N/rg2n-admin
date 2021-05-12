@@ -20,3 +20,6 @@ If your too lazy to read the code and find the commands here is a list:
 
 - /isstaff (Sends "You are staff!" if you have configured your start.js properly.)
 - /serverinfo (Sends info about your server such as server version and port.)
+- /ban (Bans the player until the server is restarted.)
+- /kick (Kicks the player from the server.)
+- /ipban (Bans the player's IP and username until server is restarted.)

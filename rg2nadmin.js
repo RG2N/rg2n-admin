@@ -2,6 +2,7 @@
 const version = "V1.0"
 const port = Game.port
 const serverversion = Game.version
+const prefix = "[#fc0303][RG2NAdmin][#ffffff] "
 
 // Config Loader
 const config = Game.serverSettings.rg2nAdmin
@@ -20,17 +21,20 @@ function checkRestricted(player) {
 
 // Code
 Game.on("playerJoin", player => {
-    player.message("This server is equipped with RG2N Admin " + version)
+    player.message(prefix + "This server is equipped with RG2N Admin " + version)
     if (checkRestricted(player) == true) {
         player.kick("You are restricted from joining this game!")
+    }
+    if (checkStaff(player) == true) {
+        player.centerPrint(prefix + "You are staff!", 10)
     }
 })
 
 Game.command("isstaff", player => {
     if (checkStaff(player) == true) {
-        player.message("You are staff!")
+        player.message(prefix + "You are staff!")
     } else {
-        player.message("You are not staff!")
+        player.message(prefix + "You are not staff!")
     }
 })
 
@@ -42,7 +46,10 @@ Game.command("kick", (caller, args) => {
     if (checkStaff(caller) !== true) return
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
+            player.message(prefix + "They have been kicked!")
             return player.kick("You have been removed from the server.")
+        } else {
+            player.message(prefix + "User or value not found.")
         }
     }
 })
@@ -52,7 +59,10 @@ Game.command("ban", (caller, args) => {
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
             restricted.push(player.userId)
+            player.message(prefix + "They have been banned!")
             return player.kick("You have been banned from the server.")
+        } else {
+            player.message(prefix + "User or value not found.")
         }
     }
 })

@@ -20,7 +20,7 @@ function checkRestricted(player) {
     if (restricted.includes(player.userId)) return true
 }
 function checkRestrictedIp(player) {
-    if (restrictedips.includes(player.socket.IPv4)) return true
+    if (restrictedips.includes(player.socket.IPV4)) return true
 }
 
 // Code
@@ -53,10 +53,10 @@ Game.command("kick", (caller, args) => {
     if (checkStaff(caller) !== true) return
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
-            player.message(prefix + "They have been kicked!")
+            caller.message(prefix + "They have been kicked!")
             return player.kick("You have been removed from the server.")
         } else {
-            player.message(prefix + "User or value not found.")
+            caller.message(prefix + "User or value not found.")
         }
     }
 })
@@ -66,10 +66,10 @@ Game.command("ban", (caller, args) => {
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
             restricted.push(player.userId)
-            player.message(prefix + "They have been banned!")
+            caller.message(prefix + "They have been banned!")
             return player.kick("You have been banned from the server.")
         } else {
-            player.message(prefix + "User or value not found.")
+            caller.message(prefix + "User or value not found.")
         }
     }
 })
@@ -79,11 +79,22 @@ Game.command("ipban", (caller, args) => {
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
             restricted.push(player.userId)
-            restrictedips.push(player.socket.IPv4)
-            player.message(prefix + "They have been banned!")
+            restrictedips.push(player.socket.IPV4)
+            caller.message(prefix + "They have been banned!")
             return player.kick("You have been banned from the server.")
         } else {
-            player.message(prefix + "User or value not found.")
+            caller.message(prefix + "User or value not found.")
+        }
+    }
+})
+
+Game.command("getip", (caller, args) => {
+    if (checkStaff(caller) !== true) return
+    for (let player of Game.players) {
+        if (player.username.startsWith(args)) {
+            return caller.message(prefix + "The player's IP is " + caller.socket.IPV4)
+        } else {
+            caller.message(prefix + "User or value not found.")
         }
     }
 })

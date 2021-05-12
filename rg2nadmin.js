@@ -78,6 +78,7 @@ Game.command("ipban", (caller, args) => {
     if (checkStaff(caller) !== true) return
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
+            restricted.push(player.userId)
             restrictedips.push(player.socket.IPv4)
             player.message(prefix + "They have been banned!")
             return player.kick("You have been banned from the server.")

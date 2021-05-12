@@ -23,3 +23,12 @@ If your too lazy to read the code and find the commands here is a list:
 - /ban (Bans the player until the server is restarted.)
 - /kick (Kicks the player from the server.)
 - /ipban (Bans the player's IP and username until server is restarted.)
+
+# Start.js template.
+```javascript
+rg2nAdmin: {
+        staff: [YourID, YourFriendsID, YourAdminsID],
+        restricted: [YourBrothersID, YourMothersID, YourDadsID],
+        restrictedips: ["111.111.1.1", "222.222.2.2", "333.333.3.3"]
+}
+```

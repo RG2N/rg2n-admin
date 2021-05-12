@@ -10,6 +10,7 @@ const config = Game.serverSettings.rg2nAdmin
 // Config
 const staff = config.staff || [],
       restricted = config.restricted || [];
+      restrictedips = config.restrictedips || [];
 
 // Functions
 function checkStaff(player) {

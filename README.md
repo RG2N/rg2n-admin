@@ -32,3 +32,7 @@ rg2nAdmin: {
         restrictedips: ["111.111.1.1", "222.222.2.2", "333.333.3.3"]
 }
 ```
+# Credits:
+- SmartLion (IpChecking)
+- Cheats (Config)
+- TH3L0N31Y_R0B0T (Testing)

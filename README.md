@@ -8,7 +8,7 @@ RG2NAdmin is a small and powerful admin to get you started with brick hill.
 ```javascript
 rg2nAdmin: {
         staff: [417215, 323659, 179802],
-        restricted: []
+        restricted: [],
         restrictedips: []
 }
 ```

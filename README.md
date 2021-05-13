@@ -24,6 +24,7 @@ If your too lazy to read the code and find the commands here is a list:
 - /kick (Kicks the player from the server.)
 - /ipban (Bans the player's IP and username until server is restarted.)
 - /getip (Get's the IP of any player in the server.)
+- /admin (Temporarily give the player staff until the server restarts.)
 
 # Start.js template.
 ```javascript

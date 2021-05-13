@@ -3,6 +3,7 @@ const version = "V1.0"
 const port = Game.port
 const serverversion = Game.version
 const prefix = "[#fc0303][RG2NAdmin][#ffffff] "
+const staff1 = prefix + "You can not moderate this player because they are staff!"
 
 // Config Loader
 const config = Game.serverSettings.rg2nAdmin
@@ -53,8 +54,12 @@ Game.command("kick", (caller, args) => {
     if (checkStaff(caller) !== true) return
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
-            caller.message(prefix + "They have been kicked!")
-            return player.kick("You have been removed from the server.")
+            if (checkStaff(player) == true) {
+                caller.message(staff1)
+            } else {
+                caller.message(prefix + "They have been kicked!")
+                return player.kick("You have been removed from the server.")
+            }
         } else {
             caller.message(prefix + "User or value not found.")
         }
@@ -65,9 +70,13 @@ Game.command("ban", (caller, args) => {
     if (checkStaff(caller) !== true) return
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
-            restricted.push(player.userId)
-            caller.message(prefix + "They have been banned!")
-            return player.kick("You have been banned from the server.")
+            if (checkStaff(player) == true) {
+                caller.message(staff1)
+            } else {
+                restricted.push(player.userId)
+                caller.message(prefix + "They have been banned!")
+                return player.kick("You have been banned from the server.")
+            }
         } else {
             caller.message(prefix + "User or value not found.")
         }
@@ -78,10 +87,14 @@ Game.command("ipban", (caller, args) => {
     if (checkStaff(caller) !== true) return
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
-            restricted.push(player.userId)
-            restrictedips.push(player.socket.IPV4)
-            caller.message(prefix + "They have been banned!")
-            return player.kick("You have been banned from the server.")
+            if (checkStaff(player) == true) {
+                caller.message(staff1)
+            } else {
+                restricted.push(player.userId)
+                restrictedips.push(player.socket.IPV4)
+                caller.message(prefix + "They have been banned!")
+                return player.kick("You have been banned from the server.")
+            }
         } else {
             caller.message(prefix + "User or value not found.")
         }
@@ -93,6 +106,17 @@ Game.command("getip", (caller, args) => {
     for (let player of Game.players) {
         if (player.username.startsWith(args)) {
             return caller.message(prefix + "The player's IP is " + player.socket.IPV4)
+        } else {
+            caller.message(prefix + "User or value not found.")
+        }
+    }
+})
+
+Game.command("admin", (caller,args) => {
+    if (checkStaff !== true) return
+    for (let player of Game.players) {
+        if (player.username.startsWith(args)) {
+            return staff.push(player.userId)
         } else {
             caller.message(prefix + "User or value not found.")
         }
